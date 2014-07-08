@@ -16,6 +16,7 @@
 ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'capybara/rails'
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 # The settings below are suggested to provide a good initial experience
