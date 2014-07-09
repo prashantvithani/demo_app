@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-	include Rails.application.routes.url_helpers
-
 	subject { page }
 
 	shared_examples_for "all static pages" do 

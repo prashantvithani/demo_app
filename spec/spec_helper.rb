@@ -79,6 +79,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 =end
+  config.include Rails.application.routes.url_helpers
+
   config.include Capybara::DSL
 end
 
