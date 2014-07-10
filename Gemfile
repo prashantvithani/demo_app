@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.7'
+gem 'rails', '4.0.8'
 
 #bootstrap
 gem 'bootstrap-sass'
-gem 'sprockets'
+gem 'bootstrap_form'
+gem 'sprockets', '2.11.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -37,7 +38,8 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -50,5 +52,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :test do
 	gem 'rspec-rails'
-	gem 'capybara'
+	gem 'selenium-webdriver', '2.35.1'
+	gem 'capybara', '2.1.0'
+	gem 'factory_girl_rails', '4.2.0'
 end

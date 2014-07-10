@@ -87,27 +87,27 @@ RSpec.describe User, :type => :model do
     end
 
     describe "return value of authenticate method" do 
-  #   	before { @user.save }
+		# before { @user.save }
 		# let(:found_user) { User.find_by(email: @user.email) }
 
 		# describe "with valid password" do
 		# 	it { should eq found_user.authenticate(@user.password) }
 		# end
 
-  #   	describe "with invalid password" do
-  #   		let(:user_for_invalid_password) {found_user.authenticate("invalid") }
-  #   		# puts user_for_invalid_password
-  #   		it { should_not eq user_for_invalid_password }
-  #   		specify { expect(user_for_invalid_password).to be_falsey }
-  #   	end
-	  	let(:user) { User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") }
+		# describe "with invalid password" do
+		# 	let(:user_for_invalid_password) {found_user.authenticate("invalid") }
+		# 	# puts user_for_invalid_password
+		# 	it { should_not eq user_for_invalid_password }
+		# 	specify { expect(user_for_invalid_password).to be_falsey }
+		# end
+		let(:f_user) { User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") }
 
-	    it "has a valid password" do
-	      expect(user.authenticate("foobar")).to be_truthy
-	    end
+		it "has a valid password" do
+		  expect(f_user.authenticate("foobar")).to be_truthy
+		end
 
-	    it "has invalid password" do
-	      expect(user.authenticate("invalid")).to be_falsey
-	    end
+		it "has invalid password" do
+		  expect(f_user.authenticate("invalid")).to be_falsey
+		end
     end
 end
