@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "User pages" do
 
@@ -11,7 +11,7 @@ describe "User pages" do
 		before { visit user_path(user)}
 		
 		it { should have_selector('h1', text: user.name) }
-		# it { should have_selector('title', text: user.name) }
+		it { should have_selector('title', text: user.name) }
 	end
 	describe "Signup page" do
 		before { visit signup_path }
@@ -30,6 +30,13 @@ describe "User pages" do
 			it "should not create a user" do
 				expect { click_button submit }.not_to change(User, :count)
 			end
+
+			describe "after submission" do
+				before { click_button submit }
+
+				it { should have_title('Sign up') }
+				it { should have_content('error') }
+			end
 		end
 
 		describe "with valid information" do
@@ -42,6 +49,14 @@ describe "User pages" do
 
 			it "should create a user" do
 				expect { click_button submit }.to change(User, :count).by(1)
+			end
+
+			describe "after saving user" do
+				before { click_button submit }
+				let(:user) { User.find_by(email: 'user@example.com') }
+
+				it {should have_title(user.name) }
+				it { should have_selector('div.alert.alert.successs', text: 'Welcome to the Sample App')}
 			end
 		end
 	end
