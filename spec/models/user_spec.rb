@@ -12,6 +12,7 @@ RSpec.describe User, :type => :model do
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password) }
 	it { should respond_to(:password_confirmation)}
+	it { should respond_to(:remember_token)}
 	it { should respond_to(:authenticate) }
 
 	it { should be_valid }
@@ -87,27 +88,22 @@ RSpec.describe User, :type => :model do
     end
 
     describe "return value of authenticate method" do 
-		# before { @user.save }
-		# let(:found_user) { User.find_by(email: @user.email) }
+		before { @user.save }
+		let(:found_user) { User.find_by(email: @user.email) }
 
-		# describe "with valid password" do
-		# 	it { should eq found_user.authenticate(@user.password) }
-		# end
-
-		# describe "with invalid password" do
-		# 	let(:user_for_invalid_password) {found_user.authenticate("invalid") }
-		# 	# puts user_for_invalid_password
-		# 	it { should_not eq user_for_invalid_password }
-		# 	specify { expect(user_for_invalid_password).to be_falsey }
-		# end
-		let(:f_user) { User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") }
-
-		it "has a valid password" do
-		  expect(f_user.authenticate("foobar")).to be_truthy
+		describe "with valid password" do
+			it { should eq found_user.authenticate(@user.password) }
 		end
 
-		it "has invalid password" do
-		  expect(f_user.authenticate("invalid")).to be_falsey
+		describe "with invalid password" do
+			let(:user_for_invalid_password) {found_user.authenticate("invalid") }
+			it { should_not eq user_for_invalid_password }
+			specify { expect(user_for_invalid_password).to be_falsey }
 		end
+    end
+
+    describe "remember token" do
+    	before { @user.save }
+    	it { expect(@user.remember_token).not_to be_blank }
     end
 end
