@@ -4,13 +4,16 @@ DemoApp::Application.routes.draw do
   get "/about", to: 'static_pages#about', as: 'about'
   get "/contact", to: 'static_pages#contact', as: 'contact'
   
+  resources :users
   get "/signup", to: 'users#new', as: 'signup'
   get "users/new"
 
-  resources :users
   resources :sessions, only: [:create]
   get "/signin", to: 'sessions#new', as: 'signin'
   delete "/signout", to: 'sessions#destroy', as: 'signout'
+
+  resources :microposts, only: [:create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
